@@ -10,8 +10,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class StandardError {
+    
     private Integer status;
     private Long timestamp;
     private String message;
-
 }

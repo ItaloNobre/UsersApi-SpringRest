@@ -42,12 +42,14 @@ public class UsuarioController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(service.create(obj));
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> update(@PathVariable Long id, @RequestBody Usuario obj){
        Usuario newObj = service.update(id,obj);
        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(newObj.getId()).toUri();
        return ResponseEntity.created(uri).build();
     }
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id){
         service.delete(id);
