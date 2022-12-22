@@ -5,6 +5,7 @@ import java.util.Optional;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.italo.simpleApi.exceptions.ObjectNotFoundException;
@@ -23,19 +24,24 @@ public class UsuarioService {
     }
 
     public Usuario create(Usuario obj) {
+        obj.setId(null);
         return repository.save(obj);
     }
 
     public List<Usuario> findAll() {
         return repository.findAll();
     }
-    
+
     public Usuario update(Long id, Usuario obj){
         Usuario newObj = findById(id);
         newObj.setName(obj.getName());
         newObj.setLogin(obj.getLogin());
         newObj.setSenha(obj.getSenha());
         return repository.save(newObj);
+    }
+
+    public void delete(Long id) {
+        repository.deleteById(id);
     }
 
 }
